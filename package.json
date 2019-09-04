@@ -1,5 +1,5 @@
 {
-  "name": "react-router-redux-firebase-auth",
+  "name": "react-redux-firebase-auth",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
