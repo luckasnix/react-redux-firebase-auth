@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 function Main() {
   return (
     <div>
-      <NavLink to='/login'>Entrar</NavLink>
-      <NavLink to='/register'>Criar conta</NavLink>
+      <NavLink to='/signin'>Entrar</NavLink>
+      <NavLink to='/signup'>Criar conta</NavLink>
     </div>
   )
 }

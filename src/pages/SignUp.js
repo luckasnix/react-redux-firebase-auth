@@ -1,7 +1,18 @@
 import React, { useState, useCallback } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
-function Register(props) {
+function SignUp(props) {
+  firebase
+    .auth()
+    .onAuthStateChanged(
+      (user) => {
+        if(user) {
+          props.history.replace('/home')
+        }
+      }
+    )
   const [email, setEmail] = useState('')
   const handleEmailChange = useCallback(
     (evt) => {
@@ -16,17 +27,19 @@ function Register(props) {
     },
     [setPassword]
   )
-  const handleSubmit = useCallback(
+  const signUpUser = useCallback(
     (evt) => {
       evt.preventDefault()
-      props.history.replace('/home')
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
     },
-    [props.history]
+    [email, password]
   )
   return (
     <div>
       <NavLink to='/'>Voltar</NavLink>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={signUpUser}>
         <input
           type='text'
           value={email}
@@ -50,4 +63,4 @@ function Register(props) {
   )
 }
 
-export default withRouter(Register)
+export default withRouter(SignUp)
